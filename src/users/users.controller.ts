@@ -155,9 +155,7 @@ export class UsersController {
     @Body() dto: UpdateUserDto,
   ): Promise<UserResponse> {
     if (userId !== currentUserId) {
-      throw new UnauthorizedException({
-        message: 'You can only update your own profile',
-      });
+      throw new UnauthorizedException('You can only update your own profile');
     }
 
     return this.usersService.updateUserById(userId, dto);
@@ -178,9 +176,7 @@ export class UsersController {
     @UserCurrent() currentUserId: string,
   ): Promise<UserResponse> {
     if (userId !== currentUserId) {
-      throw new UnauthorizedException({
-        message: 'You can only delete your own account',
-      });
+      throw new UnauthorizedException('You can only delete your own account');
     }
 
     return this.usersService.deleteUser(userId);

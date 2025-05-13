@@ -113,11 +113,15 @@ export class UsersService {
       },
     });
 
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
     return user;
   }
 
   async deleteUser(id: string): Promise<UserResponse> {
-    return this.prisma.user.delete({
+    const user = await this.prisma.user.delete({
       where: { id },
       select: {
         id: true,
@@ -127,6 +131,12 @@ export class UsersService {
         gender: true,
       },
     });
+
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    return user;
   }
 
   private async hashData(data: string): Promise<string> {

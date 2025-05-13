@@ -9,7 +9,7 @@ export class CommentsService {
   constructor(private prisma: PrismaService) {}
 
   async createComment(dto: CreateCommentDto): Promise<CommentResponse> {
-    const comment = await this.prisma.comment.create({
+    return this.prisma.comment.create({
       data: {
         content: dto.content,
         cardId: dto.cardId,
@@ -22,7 +22,6 @@ export class CommentsService {
         authorId: true,
       },
     });
-    return comment;
   }
 
   async findCommentById(id: string): Promise<CommentResponse> {

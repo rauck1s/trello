@@ -27,11 +27,13 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { CardOwnerGuard } from '../common/guards/card-owner.guard';
 
 @Controller('cards')
+@ApiTags('cards')
 export class CardsController {
   constructor(
     private cardService: CardsService,

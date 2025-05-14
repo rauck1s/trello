@@ -27,11 +27,13 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ColumnOwnerGuard } from '../common/guards/column-owner.guard';
 
 @Controller('columns')
+@ApiTags('columns')
 export class ColumnsController {
   constructor(
     private columnService: ColumnsService,
